@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Context docBase="C:\works\java_projects\jsp.board\src\webapp">
+<Context docBase="C:\works\java_projects\jsp.board.2024.02\src\webapp">
   <Resources cacheMaxSize="10240">
-    <PreResources base="C:/works/java_projects/jsp.board/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
+    <PreResources base="C:/works/java_projects/jsp.board.2024.02/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
   </Resources>
 </Context>
