@@ -1,5 +1,7 @@
 package com.sbs.jsp.board.servlet;
 
+import com.sbs.jsp.board.Rq;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,16 +14,13 @@ import java.io.IOException;
 public class gugudanservlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    req.setCharacterEncoding("UTF-8");
-    resp.setCharacterEncoding("UTF-8");
-    resp.setContentType("text/html; charset utf-8");
+    Rq rq = new Rq(req,resp);
 
-    req.getParameter("dan");
-    int dan = Integer.parseInt(req.getParameter("dan"));
-    int limit =  Integer.parseInt(req.getParameter("limit"));;
-    resp.getWriter().append("<h1>%d단</h1>\n".formatted(dan));
-    for (int i = 1; i <= limit; i++) {
-      resp.getWriter().append("<div>%d * %d = %d</div>\n".formatted(dan, i, dan * i));
-    }
+    int dan = rq.getIntParam("dan",9);
+    int limit = rq.getIntParam("limit", 9);
+    req.setAttribute("dan",dan);
+    req.setAttribute("limit", limit);
+    RequestDispatcher requestdisPacher = req.getRequestDispatcher("/gugudan2.jsp");
+    requestdisPacher.forward(req,resp);   
   }
 }
