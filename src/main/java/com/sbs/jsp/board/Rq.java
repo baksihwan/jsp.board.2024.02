@@ -2,25 +2,40 @@ package com.sbs.jsp.board;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 public class Rq {
   private final HttpServletRequest req;
-
   private final HttpServletRequest resp;
 
   public Rq(HttpServletRequest req, HttpServletRequest resp) {
     this.req = req;
     this.resp = resp;
+
+    try {
+      req.setCharacterEncoding("UTF-8");
+    } catch (UnsupportedEncodingException e) {
+      throw new RuntimeException(e);
+    }
+
+
   }
 
-  public int getIntParam(String paramName, int defaultValue) {
+  public String getParam(String paramName, String defaultValue) {
     String value = req.getParameter(paramName);
 
     if (value == null) {
       return defaultValue;
     }
-    return defaultValue;
+    return value;
+  }
 
-    try{
-      return Integer.parseInt(value);
+  public void appendBody(String str){
+    try {
+      resp.getWriter().appned(str);
+    } catch (IOException e){
+      throw new RuntimeException(e);
     }
-    catch(){
+  }
+}
