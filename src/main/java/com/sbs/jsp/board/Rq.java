@@ -1,5 +1,6 @@
 package com.sbs.jsp.board;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
@@ -38,4 +39,16 @@ public class Rq {
       throw new RuntimeException(e);
     }
   }
-}
+
+  public void setAttr(String name , Object value) {
+    req.setAttribute(name, value);
+  }
+
+  public void view(String path) {
+    RequestDispatcher requestDispather = req.getRequestDispatcher("/jsp/"+path + "jsp");
+    requestDispather.forward(req,resp);
+
+  }
+  }
+
+ 
